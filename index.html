@@ -871,89 +871,23 @@
   </style>
   <body>
     <div class="container scroll-box">
-      <nav class="navbar" id="navbar">
-        <!-- Logo -->
-        <div class="logo">
-          <a href="index.html">Portfolio<span class="logo-dot">.</span></a>
-        </div>
 
-        <!-- Nav Items -->
-        <ul class="nav-items" id="navItems">
-          <li><a href="index.html" class="nav-link active">Home</a></li>
-          <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="skills.html" class="nav-link">Skills</a></li>
-          <li><a href="projects.html" class="nav-link">Projects</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
 
-        <!-- Action Buttons -->
-        <div class="nav-actions">
-          <a href="#" class="btn-login">Login</a>
-          <a href="#" class="btn-signup">Sign Up</a>
-        </div>
 
-        <!-- Hamburger (mobile) -->
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </nav>
-      <!-- Mobile Drawer -->
-      <div class="mobile-drawer" id="mobileDrawer">
-        <ul class="mobile-nav-items">
-          <li><a href="index.html" onclick="closeMenu()">Home</a></li>
-          <li><a href="about.html" onclick="closeMenu()">About</a></li>
-          <li><a href="skills.html" onclick="closeMenu()">Skills</a></li>
-          <li><a href="projects.html" onclick="closeMenu()">Projects</a></li>
-          <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-        </ul>
-        <div class="mobile-actions">
-          <a href="#" class="btn-login">Login</a>
-          <a href="#" class="btn-signup">Sign Up</a>
-        </div>
-      </div>
 
-      <!-- Overlay -->
-      <div
-        class="drawer-overlay"
-        id="drawerOverlay"
-        onclick="closeMenu()"
-      ></div>
 
-      <!-- <nav id="navbar">
-  <a href="#" class="nav-logo">Portfolio</a>
+<div id="navbar"></div>
 
-  <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
 
-  <div class="nav-actions">
-    <a href="#" class="btn-nav btn-nav-outline">Login</a>
-    <a href="#" class="btn-nav btn-nav-filled">Sign Up</a>
-  </div>
 
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
-</nav> -->
 
-      <!-- mobile menu -->
-      <!-- <div class="mobile-menu" id="mobileMenu">
-  <a href="#home"     onclick="toggleMenu()">Home</a>
-  <a href="#about"    onclick="toggleMenu()">About</a>
-  <a href="#skills"   onclick="toggleMenu()">Skills</a>
-  <a href="#projects" onclick="toggleMenu()">Projects</a>
-  <a href="#contact"  onclick="toggleMenu()">Contact</a>
-  <div class="mobile-menu-actions">
-    <a href="#" class="btn-nav btn-nav-outline" style="flex:1;text-align:center">Login</a>
-    <a href="#" class="btn-nav btn-nav-filled"  style="flex:1;text-align:center">Sign Up</a>
-  </div>
-</div> -->
 
       <!-- ══ HERO ══ -->
       <section class="hero" id="home">
@@ -1151,53 +1085,16 @@
           const p = document.createElement("div");
           p.className = "particle";
           p.style.cssText = `
-      left: ${Math.random() * 100}%;
-      bottom: ${Math.random() * 40}%;
-      width: ${1 + Math.random() * 2}px;
-      height: ${1 + Math.random() * 2}px;
-      animation-duration: ${4 + Math.random() * 8}s;
-      animation-delay: ${Math.random() * 6}s;
-      opacity: ${0.3 + Math.random() * 0.5};
-    `;
+              left: ${Math.random() * 100}%;
+              bottom: ${Math.random() * 40}%;
+              width: ${1 + Math.random() * 2}px;
+              height: ${1 + Math.random() * 2}px;
+              animation-duration: ${4 + Math.random() * 8}s;
+              animation-delay: ${Math.random() * 6}s;
+              opacity: ${0.3 + Math.random() * 0.5};
+            `;
           container.appendChild(p);
         }
-      </script>
-
-      <script>
-        /* ── scroll effect ── */
-        window.addEventListener("scroll", () => {
-          document
-            .getElementById("navbar")
-            .classList.toggle("scrolled", window.scrollY > 20);
-        });
-
-        /* ── hamburger toggle ── */
-        document.getElementById("hamburger").addEventListener("click", () => {
-          const open = document
-            .getElementById("mobileDrawer")
-            .classList.toggle("open");
-          document
-            .getElementById("drawerOverlay")
-            .classList.toggle("show", open);
-          document.getElementById("hamburger").classList.toggle("active", open);
-        });
-
-        function closeMenu() {
-          document.getElementById("mobileDrawer").classList.remove("open");
-          document.getElementById("drawerOverlay").classList.remove("show");
-          document.getElementById("hamburger").classList.remove("active");
-        }
-
-        /* ── active link highlight ── */
-        const currentPage =
-          window.location.pathname.split("/").pop() || "index.html";
-        document
-          .querySelectorAll(".nav-link, .mobile-nav-items a")
-          .forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === currentPage)
-              link.classList.add("active");
-          });
       </script>
     </div>
   </body>

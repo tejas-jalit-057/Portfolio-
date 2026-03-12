@@ -435,55 +435,15 @@
   <body>
     <div class="container scroll-box">
       <!-- Navbar -->
-          <nav class="navbar" id="navbar">
-        <!-- Logo -->
-        <div class="logo">
-          <a href="index.html">Portfolio<span class="logo-dot">.</span></a>
-        </div>
+    <div id="navbar"></div>
 
-        <!-- Nav Items -->
-        <ul class="nav-items" id="navItems">
-          <li><a href="index.html" class="nav-link active">Home</a></li>
-          <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="skills.html" class="nav-link">Skills</a></li>
-          <li><a href="projects.html" class="nav-link">Projects</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
-
-        <!-- Action Buttons -->
-        <div class="nav-actions">
-          <a href="#" class="btn-login">Login</a>
-          <a href="#" class="btn-signup">Sign Up</a>
-        </div>
-
-        <!-- Hamburger (mobile) -->
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </nav>
-      <!-- Mobile Drawer -->
-      <div class="mobile-drawer" id="mobileDrawer">
-        <ul class="mobile-nav-items">
-          <li><a href="index.html" onclick="closeMenu()">Home</a></li>
-          <li><a href="about.html" onclick="closeMenu()">About</a></li>
-          <li><a href="skills.html" onclick="closeMenu()">Skills</a></li>
-          <li><a href="projects.html" onclick="closeMenu()">Projects</a></li>
-          <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-        </ul>
-        <div class="mobile-actions">
-          <a href="#" class="btn-login">Login</a>
-          <a href="#" class="btn-signup">Sign Up</a>
-        </div>
-      </div>
-
-      <!-- Overlay -->
-      <div
-        class="drawer-overlay"
-        id="drawerOverlay"
-        onclick="closeMenu()"
-      ></div>
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
 
       <section class="skills-section" id="skills">
         <!-- Header -->

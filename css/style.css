@@ -778,3 +778,391 @@ textarea:focus {
 .contact-container::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------------------------navbar------------------------------ */
+
+
+/* =============================================
+   NAVBAR STYLES — Tejas Jalit Portfolio
+   navbar.css
+   Requires Google Fonts (add to <head>):
+   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Exo+2:wght@300;400;500&display=swap" rel="stylesheet" />
+============================================= */
+
+/* ── CSS Variables (sync with your root vars) ── */
+:root {
+  --nav-bg: rgba(17, 17, 17, 0.82);
+  --nav-bg-scrolled: rgba(12, 12, 12, 0.96);
+  --cyan: #00d4d4;
+  --cyan-dim: rgba(0, 212, 212, 0.10);
+  --cyan-mid: rgba(0, 212, 212, 0.18);
+  --cyan-glow: rgba(0, 212, 212, 0.32);
+  --cyan-border: rgba(0, 212, 212, 0.22);
+  --text: #e8e8e8;
+  --muted: #888;
+  --nav-height: 72px;
+  --drawer-bg: rgba(12, 12, 12, 0.98);
+}
+
+/* ══════════════════════════════════════
+   BASE NAV
+══════════════════════════════════════ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--nav-height);
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 212, 212, 0.07);
+
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Scrolled state — JS adds this class */
+.navbar.scrolled {
+  background: var(--nav-bg-scrolled);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+  border-bottom-color: var(--cyan-border);
+}
+
+/* ══════════════════════════════════════
+   LOGO
+══════════════════════════════════════ */
+.nav-logo {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.25s;
+}
+
+.nav-logo:hover {
+  opacity: 0.8;
+}
+
+.nav-logo-dot {
+  color: #fff;
+}
+
+/* ══════════════════════════════════════
+   DESKTOP LINKS
+══════════════════════════════════════ */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 7px 16px;
+  border-radius: 8px;
+  position: relative;
+  transition: color 0.25s, background 0.25s;
+}
+
+/* animated underline */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  right: 50%;
+  height: 2px;
+  background: var(--cyan);
+  border-radius: 2px;
+  transition: left 0.3s ease, right 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--cyan);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  left: 16px;
+  right: 16px;
+}
+
+/* ══════════════════════════════════════
+   ACTION BUTTONS
+══════════════════════════════════════ */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.nav-btn {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  padding: 8px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.28s ease;
+  display: inline-block;
+}
+
+.nav-btn-outline {
+  border: 1px solid var(--cyan-border);
+  background: transparent;
+  color: var(--cyan);
+}
+
+.nav-btn-outline:hover {
+  background: var(--cyan-dim);
+  border-color: var(--cyan);
+  box-shadow: 0 0 16px var(--cyan-glow);
+}
+
+.nav-btn-filled {
+  border: 1px solid var(--cyan);
+  background: var(--cyan);
+  color: #0d1a1a;
+}
+
+.nav-btn-filled:hover {
+  background: #00ffff;
+  border-color: #00ffff;
+  box-shadow: 0 0 20px var(--cyan-glow);
+}
+
+/* ══════════════════════════════════════
+   HAMBURGER BUTTON
+══════════════════════════════════════ */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--cyan-border);
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.nav-hamburger:hover {
+  border-color: var(--cyan);
+  background: var(--cyan-dim);
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--cyan);
+  border-radius: 2px;
+  transform-origin: center;
+  transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease;
+}
+
+/* "X" state when open */
+.nav-hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+
+.nav-hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ══════════════════════════════════════
+   MOBILE DRAWER
+══════════════════════════════════════ */
+.nav-drawer {
+  display: none;
+  /* shown via JS class */
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  z-index: 999;
+
+  background: var(--drawer-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--cyan-border);
+
+  padding: 20px 24px 28px;
+  flex-direction: column;
+  gap: 4px;
+
+  /* slide-down animation */
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.nav-drawer.open {
+  display: flex;
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.drawer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* override base .nav-link styles for drawer */
+.nav-drawer .nav-link {
+  display: block;
+  font-size: 15px;
+  letter-spacing: 2.5px;
+  padding: 12px 18px;
+  border-radius: 10px;
+}
+
+.nav-drawer .nav-link::after {
+  display: none;
+}
+
+.nav-drawer .nav-link:hover,
+.nav-drawer .nav-link.active {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+}
+
+.drawer-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.drawer-actions .nav-btn {
+  flex: 1;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════
+   OVERLAY (dimmed background)
+══════════════════════════════════════ */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: overlayFadeIn 0.3s ease forwards;
+}
+
+.nav-overlay.show {
+  display: block;
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════════════ */
+
+/* Tablet / medium screens */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0 36px;
+  }
+
+  .nav-links {
+    gap: 2px;
+  }
+
+  .nav-link {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Mobile — hide desktop items, show hamburger */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+  .nav-logo {
+    font-size: 20px;
+  }
+}
